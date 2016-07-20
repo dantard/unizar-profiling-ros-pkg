@@ -1,0 +1,18 @@
+<launch>
+  <node name="udp" pkg="ros_profiling" type="rx" args="-f /home/danilo/.rospacket/raw_udp.yaml" output="screen"/>
+<node name="nod" pkg="ros_profiling" type="rx" args="-f /home/danilo/.rospacket/raw_nod.yaml" output="screen"/>
+<node name="tcp" pkg="ros_profiling" type="rx" args="-f /home/danilo/.rospacket/raw_tcp.yaml" output="screen"/>
+<node name="pound" pkg="ros_profiling" type="rx" args="-f /home/danilo/.rospacket/pound.yaml" output="screen">
+<remap from="image" to="/R2/rx/R0/image"/>
+<remap from="laser" to="/R2/rx/R0/laser"/>
+
+</node>
+<node name="nimbro" pkg="ros_profiling" type="rx" args="-f /home/danilo/.rospacket/nimbro.yaml" output="screen"/>
+
+<node name="rt_wmp" pkg="ros_profiling" type="rx" args="-f /home/danilo/.rospacket/rt-wmp.yaml" output="screen">
+<remap from="image" to="/R1/rx/R0/image"/>
+<remap from="laser" to="/R1/rx/R0/laser"/>
+
+</node>
+
+</launch>

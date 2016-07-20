@@ -1,0 +1,11 @@
+Header header
+uint16 rate
+uint16 size
+uint16 freq
+uint64 serial
+int16 rssi
+uint16 source
+float32 rssi_average
+float32 pdr_average
+float32 rssi_last_100
+float32 pdr_last_100

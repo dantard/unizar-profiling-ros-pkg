@@ -1,0 +1,15 @@
+<package>
+  <description brief="ros_profiling_msgs">
+
+     ros_profiling_msgs
+
+  </description>
+  <author>danilo tardioli</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/ros_profiling_msgs</url>
+  <depend package="roscpp"/>
+
+</package>
+
+

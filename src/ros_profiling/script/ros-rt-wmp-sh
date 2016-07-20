@@ -1,0 +1,3 @@
+#!/bin/bash
+sleep 5
+rosrun ros_aceous ros-aceous --node-id $1 --num-nodes $2 /tf:=/R$1/tf __respawn:=true
