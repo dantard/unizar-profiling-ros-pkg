@@ -24,7 +24,7 @@ topics:
    count: 500
 ```
 
-and 
+and for `rx`
 
 ```
 topics:
