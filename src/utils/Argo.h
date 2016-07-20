@@ -16,7 +16,7 @@ class Argo{
         enum types_t {INT, FLOAT, STRING, BOOL};
     protected:
         types_t type;
-        bool has_parameter, mandatory;
+        bool has_parameter, mandatory, used;
         std::string description, long_name;
         std::string hr_type;
         char name;
@@ -31,6 +31,7 @@ class Argo{
             if (long_name!=0){
                 this->long_name = std::string(long_name);
             }
+            this->used = 0;
         }
         char getName(){
             return name;
@@ -59,6 +60,12 @@ class Argo{
         }
         virtual void setValue(std::string ){}
         virtual void processYAML(YAML::Node & config, bool override){}
+        virtual void setUsed(){
+            used = 1;
+        }
+        virtual bool isUsed(){
+            return used;
+        }
     };
 
     template <class T> class GenParam :public Param{
@@ -234,17 +241,29 @@ public:
 
             for (int i = 0; i< vec.size(); i++){
                 Param * p = vec[i];
-                if(p->getName() == c || (c==0 && p->getLongName().compare(ops[option_index].name) == 0)){
+                if(p->getName() == c || (c == 0 && p->getLongName().compare(ops[option_index].name) == 0)){
                     if (p->hasParameter()){
                         p->setValue(std::string(optarg));
                     }else{
                         p->setValue("1");
                     }
+                    p->setUsed();
                     switches.push_back(i);
                     break;
                 }
             }
         }
+
+        /* check mandatory */
+        for (int i = 0; i<vec.size(); i++){
+            Param * p = vec[i];
+            if (p->isMandatory() && !p->isUsed()){
+                std::cerr << "*** Parameter '" << p->getName() << "' is mandatory" <<std::endl;
+                showList();
+                exit(0);
+            }
+        }
+
 
         /* check dependencies */
         for (int i = 0; i<switches.size(); i++){
