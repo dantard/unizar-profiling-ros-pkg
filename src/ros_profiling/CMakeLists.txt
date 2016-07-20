@@ -21,27 +21,13 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(pdr-pub  src/pdr_pub.cpp)
-add_executable(pdr-log  src/pdr_log.cpp)
 add_executable(rx           src/rx.cpp)
 add_executable(tx           src/tx.cpp)
 add_executable(controller   src/controller.cpp)
-add_executable(emitter      src/emitter.cpp)
 add_executable(checker      src/checker.cpp)
 
-target_link_libraries(pdr-pub           rt z ${Boost_LIBRARIES}  ${catkin_LIBRARIES})
-target_link_libraries(pdr-log           rt z ${Boost_LIBRARIES}  ${catkin_LIBRARIES})
+
 target_link_libraries(rx                yaml-cpp rt z ${Boost_LIBRARIES}  ${catkin_LIBRARIES})
 target_link_libraries(tx                yaml-cpp rt z ${Boost_LIBRARIES}  ${catkin_LIBRARIES})
 target_link_libraries(controller        yaml-cpp rt z boost_iostreams ${Boost_LIBRARIES}  ${catkin_LIBRARIES})
-target_link_libraries(emitter           yaml-cpp rt z ${Boost_LIBRARIES}  ${catkin_LIBRARIES})
 target_link_libraries(checker           yaml-cpp ncurses rt z ${Boost_LIBRARIES}  ${catkin_LIBRARIES})
-
-add_custom_command(TARGET emitter
-        POST_BUILD
-        COMMAND echo "Applying sticky bit to the executable..."
-        COMMAND echo ${CMAKE_BINARY_DIR}/../devel/lib/ros_profiling/emitter
-        COMMAND sudo chmod a+rwx ${CMAKE_BINARY_DIR}/../devel/lib/ros_profiling/emitter
-        COMMAND sudo chown root:root ${CMAKE_BINARY_DIR}/../devel/lib/ros_profiling/emitter
-        COMMAND sudo chmod +s ${CMAKE_BINARY_DIR}/../devel/lib/ros_profiling/emitter
-)

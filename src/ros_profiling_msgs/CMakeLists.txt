@@ -4,7 +4,7 @@ project(ros_profiling_msgs)
 find_package(catkin REQUIRED COMPONENTS message_generation std_msgs)
 
 add_message_files(FILES
-    rssi.msg packet.msg WMPInfo.msg RFframe.msg Controller.msg
+    packet.msg Controller.msg
 )
 
 add_service_files(FILES
