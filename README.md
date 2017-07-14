@@ -1,5 +1,5 @@
 # unizar-profiling-ros-pkg
-The ros profiling package
+The ros profiling package simulates ROS topics of desired message size and frequency.
 
 Usage: 
 
