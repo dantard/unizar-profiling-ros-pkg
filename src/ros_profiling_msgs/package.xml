@@ -1,6 +1,6 @@
 <package>
 <name>ros_profiling_msgs</name>
-<description>Messages</description>
+<description>Synthesize ROS Messages</description>
 <maintainer email="dantard@unizar.es">Danilo Tardioli</maintainer>
 <version>1.1.0</version>
 <author>Danilo Tardioli, dantard@unizar.es</author>
